@@ -3,7 +3,7 @@
     <title>{% block title %}{% endblock %} </title>
     <style>
         nav a {
-            color: #1aa7ec;
+            color: #a40000;
             font-size: 3em;
             margin-left: 80px;
 	    text-decoration: none;
@@ -16,15 +16,12 @@
 </head>
 <body>
     <nav>
-	<img src="{{url_for('static', filename='logo.jpg')}}"width="50" height="60" align="left" />
+	<img src="{{url_for('static', filename='logo.jpg')}}"width="250" height="230" align="left" />
         <a href="{{ url_for('welcome') }}">Welcome</a>
-	<a href="{{ url_for('about') }}">About</a>
-	<a href="{{ url_for('links') }}">Links</a>
-	<a href="{{ url_for('photos') }}">Photos</a>
-	<a href="{{ url_for('gear') }}">Gear</a>
+	<a href="{{ url_for('courses') }}">Courses</a>
 	<a href="{{ url_for('register') }}">Register</a>
 	<a href="{{ url_for('login') }}">Log-in</a>
-	
+	<a href="{{ url_for('administration') }}">Administration</a>
         
     </nav>
     <hr>
