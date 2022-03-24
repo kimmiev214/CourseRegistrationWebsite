@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+    <title>{% block title %}{% endblock %} </title>
+    <style>
+        nav a {
+            color: #1aa7ec;
+            font-size: 3em;
+            margin-left: 80px;
+	    text-decoration: none;
+        }
+	table, th, td {
+  		border: 1px solid black;
+  		border-collapse: collapse;
+	}
+    </style>
+</head>
+<body>
+    <nav>
+	<img src="{{url_for('static', filename='logo.jpg')}}"width="50" height="60" align="left" />
+        <a href="{{ url_for('welcome') }}">Welcome</a>
+	<a href="{{ url_for('about') }}">About</a>
+	<a href="{{ url_for('links') }}">Links</a>
+	<a href="{{ url_for('photos') }}">Photos</a>
+	<a href="{{ url_for('gear') }}">Gear</a>
+	<a href="{{ url_for('register') }}">Register</a>
+	<a href="{{ url_for('login') }}">Log-in</a>
+	
+        
+    </nav>
+    <hr>
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
+</body>
+</html>

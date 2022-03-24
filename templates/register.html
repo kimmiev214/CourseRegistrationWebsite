@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+<!This will be the about page for the lacrosse website.>
+{% block content %}
+    <h2>{% block title %} Register{% endblock %}</h2>
+    <div>
+        <form action="" method="post">
+	<div class="msg">{{ msg }}</div>
+        <input type="text" placeholder="Username" name="username" value="{{
+          request.form.username }}">
+	<br>
+         <input type="password" placeholder="Password" name="password" value="{{
+          request.form.password }}">
+	<br>
+	<input type="password" placeholder="Confirm Password" name="confirmpassword" value="{{
+          request.form.password }}">
+	<br>
+        <input class="btn btn-default" type="submit" value="Create Account">
+      </form>
+    </div>
+{% endblock %}

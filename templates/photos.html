@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+<!This will be the photos page for the lacrosse website.>
+{% block content %}
+    <h3>{% block title %} Photos{% endblock %}</h3>
+<body>
+      <img src="{{url_for('static', filename='play.jpg')}}"width="400" height="600"  />
+	<br>
+      <img src="{{url_for('static', filename='play2.jpg')}}"width="400" height="600"  />
+	<br>
+      <img src="{{url_for('static', filename='play3.jpg')}}"width="400" height="600" />
+</body>
+{% endblock %}

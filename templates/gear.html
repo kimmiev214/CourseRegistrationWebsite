@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+<!This will be the gear page for the lacrosse website.>
+{% block content %}
+    <h2>{% block title %} Gear{% endblock %}</h2>
+    <div>
+        <table>
+  <tr>
+    <th>Position</th>
+    <th>Stick length</th>
+    <th>Chest Protection Required</th>
+  </tr>
+  <tr>
+    <td>Attack</td>
+    <td>Short</td>
+    <td>No</td>
+  </tr>
+  <tr>
+    <td>Midfield</td>
+    <td>Short or Long</td>
+    <td>No</td>
+  </tr>
+<tr>
+    <td>Defense</td>
+    <td>Long</td>
+    <td>No</td>
+  </tr>
+<tr>
+    <td>Goalie</td>
+    <td>Short or Long</td>
+    <td>Yes</td>
+  </tr>
+</table>
+    </div>
+{% endblock %}
