@@ -1,5 +1,5 @@
 '''
-This is a flask program to create a website about lacrosse
+This is a flask program to create a course registration website for a hypothetical university
 '''
 #imports
 import datetime
