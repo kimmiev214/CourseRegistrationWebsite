@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/Users/kimberlyvillatoro/Desktop/untitled folder/CourseRegistrationWebsite/vmuni/bin/python3" "$0" "$@"
+'''exec' "/Users/kimberlyvillatoro/Desktop/untitled folder/CourseRegistrationWebsite/vmuni/bin/python" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re

@@ -1,5 +1,9 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %} </title>
     <style>
         .content-table {
@@ -20,23 +24,24 @@
         }
 	table, td {
   		border: 0.5px solid black;
-  		
+
 	}
     </style>
 </head>
 <body>
     <nav>
-	<img src="{{url_for('static', filename='logo.jpg')}}"width="250" height="230" align="left" />
-        <a href="{{ url_for('welcome') }}">Welcome</a>
-	<a href="{{ url_for('courses') }}">Courses</a>
-	<a href="{{ url_for('register') }}">Register</a>
-	<a href="{{ url_for('login') }}">Log-in</a>
-	<a href="{{ url_for('administration') }}">Administration</a>
-        
-    </nav>
-    <hr>
-    <div class="content">
-        {% block content %} {% endblock %}
-    </div>
+        <img src="{{url_for('static', filename='logo.jpg')}}"width="250" height="230" align="left" />
+            <a href="{{ url_for('welcome') }}">Welcome</a>
+        <a href="{{ url_for('courses') }}">Courses</a>
+        <a href="{{ url_for('register') }}">Register</a>
+        <a href="{{ url_for('login') }}">Log-in</a>
+        <a href="{{ url_for('administration') }}">Administration</a>
+
+        </nav>
+        <hr>
+        <div class="content">
+            {% block content %} {% endblock %}
+        </div>
 </body>
 </html>
+

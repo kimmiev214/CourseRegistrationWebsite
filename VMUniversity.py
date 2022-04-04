@@ -2,7 +2,6 @@
 This is a flask program to create a course registration website for a hypothetical university
 '''
 #imports
-import datetime
 import re
 import logging
 import bcrypt
@@ -41,7 +40,12 @@ def administration():
 def welcome():
     '''This creates the welcome webpage'''
     #returns the render
-    return render_template('welcome.html', utc_dt=datetime.datetime.now())
+    return render_template('welcome.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
 @app.route('/courses/')
 def courses():
     '''This creates the courses webpage'''
