@@ -1,19 +1,12 @@
 {% extends 'base.html' %}
-<!This will be the welcome page for the lacrosse website.>
+
 {% block content %}
-    <h1>{% block title %} Welcome!{% endblock %}</h1>
+    <h2>{% block title %} Welcome!{% endblock %}</h2>
     <div>
 	<p>
             Welcome to Villatoro Marquis University.
             We are a proud Information Technology Institution with a long history of serving our
             student population!
 	</p>
-    </div>
-    <div>
-	<p>
-	    The date and time is:
-	
-	    {{ utc_dt }}
-        </p>
     </div>
 {% endblock %}

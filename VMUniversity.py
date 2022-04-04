@@ -5,6 +5,8 @@ This is a flask program to create a course registration website for a hypothetic
 import datetime
 import re
 import logging
+import bcrypt
+
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 #main
@@ -22,9 +24,9 @@ def create_tables():
 class Users(db.Model):
     '''Users database class'''
     #username column
-    username = db.Column('username', db.String, primary_key=True)
+    username = db.Column('username', db.String(20), primary_key=True, nullable = False)
     #password column
-    password = db.Column(db.String)
+    password = db.Column(db.String(60), nullable = False)
 def __init__(username, password):
     '''initialize function'''
     self.username = username
@@ -55,17 +57,19 @@ def register():
         if request.form['password'] == request.form['confirmpassword']:
             #if password passes password_okay method
             if password_okay(request.form['password']):
+                password = request.form['password']
+                #hashed = bcrypt.hashpw(password, bcrypt.gensalt())
                 #if username is not blank
                 if request.form['username']!="":
                     #set user username and password info
                     user = Users(username = request.form['username'],
-                        password = request.form['password'])
+                        password = password)
                     #add user to database
                     db.session.add(user)
                     #commit the database
                     db.session.commit()
                     #success message
-                    msg = "Success, user created."
+                    msg = "Success, you are now registered."
                 else:
                     #Please add username message
                     msg = "Please add username"

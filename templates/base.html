@@ -2,15 +2,25 @@
 <head>
     <title>{% block title %}{% endblock %} </title>
     <style>
-        nav a {
+        .content-table {
+            margin: 25px 0;
+        }
+
+    th {
+            background-color: #a40000;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        nav a, h2 {
             color: #a40000;
-            font-size: 3em;
+            font-size: 2em;
             margin-left: 80px;
 	    text-decoration: none;
         }
-	table, th, td {
-  		border: 1px solid black;
-  		border-collapse: collapse;
+	table, td {
+  		border: 0.5px solid black;
+  		
 	}
     </style>
 </head>
