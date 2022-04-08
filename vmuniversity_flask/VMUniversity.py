@@ -29,9 +29,9 @@ def login():
     form=LoginForm()
     if form.validate_on_submit():
         user=User.query.filter_by(email=form.email.data).first()
-        if user and form.password.data==user.password:
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
             flash(f'Login successful for {form.email.data}', category='success')
-            return redirect(url_for('courses'))
+            return redirect(url_for('welcome'))
         else:
             flash(f'Login unsuccessful for {form.email.data}', category='danger')
     return render_template('login.html', title='Login', form=form)
