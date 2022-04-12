@@ -11,3 +11,12 @@ class User(db.Model):
 
     def __repr__(self):
         return f'{self.username} : {self.email} : {self.date_created.strftime("%d/%m/%Y, %H:%M:%S")}'
+
+class Course(db.Model):
+    id=db.Column(db.Integer, primary_key=True)
+    name=db.Column(db.String(20), unique=False, nullable=False)
+    description=db.Column(db.String(200), unique=False, nullable=True)
+    professor=db.Column(db.String(20), unique=False, nullable=False)
+    
+    def __repr__(self):
+        return f'{self.id} : {self.name} : {self.date_created.strftime("%d/%m/%Y, %H:%M:%S")}'
