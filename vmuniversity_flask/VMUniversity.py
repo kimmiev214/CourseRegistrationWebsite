@@ -47,12 +47,24 @@ def welcome():
     '''This creates the welcome webpage'''
     #returns the render
     return render_template('welcome.html', title='Welcome Page')
-
+headings = ('Course Number','Title','Options')
+data = (
+    ('CSVMU150','Introduction to Computer Science'),
+    ('CSVMU160','Introduction to Python'),
+    ('CSVMU200','Intermediate Programming'),
+    ('CSVMU310','Introduction to Data Structures'),
+    ('CSVMU332','History of Technology Innovation'),
+    ('CSVMU415','Computer Graphics'),
+    ('CSVMU425','Compiler Theory and Design'),
+    ('CSVMU490','Projects and Trends in Computer Science')
+    )
 @app.route('/courses/')
 def courses():
     '''This creates the courses webpage'''
+    
+    
     #returns the render
-    return render_template('courses.html', title='Course Page')
+    return render_template('courses.html', title='Course Page', headings = headings, data = data)
 
 def password_okay(password):
     '''This method uses regex to check the password to meet criteria'''

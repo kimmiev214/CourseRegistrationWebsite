@@ -1,54 +1,30 @@
 {% extends 'base.html' %}
 <!This will be the courses page for the registration website.>
 {% block content %}
-    <h2>{% block title %} Bachelor's Degree in Computer Science Course Requirements {% endblock %}</h2>
-    <div>
-        <table class="content-table">
+<h2>{% block title %} Bachelor's Degree in Computer Science Course Requirements {% endblock %}</h2>
+<div>
+  <table>
   <tr>
-    <th>Course Number</th>
-    <th>Description</th>
-    <th>Professor</th>
+  {%for header in headings%}
+    <th>{{ header }}</th>
+	{% endfor%}
   </tr>
+  {%for row in data%}
   <tr>
-    <td>CSVMU150 Introduction to Computer Science</td>
-    <td></td>
-    <td></td>
+	{%for cell in row%}
+  <td>{{cell}}</td>
+  
+	{% endfor%}
+	<td>
+	<form method="post" action="/">
+        <input type="submit" value="Enroll" name="Enroll"/>
+        <input type="submit" value="Disenroll" name="Disenroll" />
+    </form>
+	</td>
   </tr>
-  <tr>
-    <td>CSVMU160 Introduction to Python</td>
-    <td></td>
-    <td></td>
-  </tr>
-<tr>
-    <td>CSVMU200 Intermediate Programming</td>
-    <td></td>
-    <td></td>
-  </tr>
-<tr>
-    <td>CSVMU310 Introduction to Data Structures </td>
-    <td></td>
-    <td></td>
-  </tr>
-<tr>
-    <td>CSVMU332 History of Technology Innovation</td>
-    <td></td>
-    <td></td>
-  </tr>
-<tr>
-    <td>CSVMU415 Computer Graphics</td>
-    <td></td>
-    <td></td>
-  </tr>  
-<tr>
-    <td>CSVMU425 Compilers Theory and Design</td>
-    <td></td>
-    <td></td>
-  </tr> 
-<tr>
-    <td>CSVMU490 Projects and Trends in Computer Science</td>
-    <td></td>
-    <td></td>
-  </tr> 
+  {% endfor%}
+  
+  
 </table>
-    </div>
+</div>
 {% endblock %}
