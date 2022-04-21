@@ -3,8 +3,8 @@ This is a flask program to create a course registration website for a hypothetic
 '''
 #imports
 from vmuniversity_flask import app, db, bcrypt
-from vmuniversity_flask.forms import RegistrationForm, LoginForm
-from vmuniversity_flask.models import User
+from vmuniversity_flask.forms import CreateCourseForm, RegistrationForm, LoginForm
+from vmuniversity_flask.models import User, Course
 from flask import redirect, render_template, url_for, flash
 import re
 
@@ -39,8 +39,15 @@ def login():
 @app.route('/administration')
 def administration():
     '''This creates the administration webpage'''
+    form=CreateCourseForm()
+    if User.email is "admin@admin.com":
+        return render_template('administration.html', title='Administration Page', form=form)
+    else:
+        return render_template('adminfail.html')
+
+
     #returns the render
-    return render_template('administration.html', title='Administration Page')
+    
 
 @app.route('/welcome/')
 def welcome():
