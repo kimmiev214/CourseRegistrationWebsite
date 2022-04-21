@@ -2,33 +2,34 @@
 <!This will be the administration page for the registration website.>
 {% block content %}
     <h2>{% block title %} Administration{% endblock %}</h2>
-    <div>
-        <table>
-  <tr>
-    <th>Student ID</th>
-    <th>Student Name</th>
-    <th>Courses Registered</th>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-</table>
+    <div class="container w-50">
+      <form method="POST">
+        <label for="Create Course">Create Course</label>
+        <br>
+        <input type="text" name="Course ID"
+               placeholder="Course ID"
+               value="{{ request.form['CourseID'] }}"></input>
+        <br>
+        <br>
+        <input type="text" name="Course Title"
+               placeholder="Course Title"
+               value="{{ request.form['CourseTitle'] }}"></input>
+        
+        <br>
+        <br>
+        <input type="text" name="Description"
+               placeholder="Description"
+               value="{{ request.form['Description'] }}"></input>
+        
+        <br>
+        <br>
+        <input type="text" name="Professor"
+               placeholder="Professor"
+               value="{{ request.form['Professor'] }}"></input>
+        
+        <br>
+        <br>
+        <button type="submit">Create Course</button>
+      </form>
     </div>
 {% endblock %}
