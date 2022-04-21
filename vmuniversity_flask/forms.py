@@ -15,3 +15,10 @@ class LoginForm(FlaskForm):
     email = StringField(label='Email', validators=[DataRequired(), Email()])
     password = PasswordField(label='Password', validators=[DataRequired(), Length(min=12, max=20)])
     login = SubmitField(label='Sign in')
+
+class CreateCourseForm(FlaskForm):
+    id = StringField(label='Course ID', validators=[DataRequired()])
+    name = StringField(label='Course Name', validators=[DataRequired()])
+    description = StringField(label='Description', validators=[DataRequired()])
+    professor = StringField(label='Professor Name', validators=[DataRequired()])
+    createCourse = SubmitField(label='Create Course')
