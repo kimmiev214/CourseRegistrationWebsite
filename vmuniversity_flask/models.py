@@ -13,10 +13,12 @@ class User(db.Model):
         return f'{self.username} : {self.email} : {self.date_created.strftime("%d/%m/%Y, %H:%M:%S")}'
 
 class Course(db.Model):
+    '''Courses database class'''
     id=db.Column(db.Integer, primary_key=True)
-    name=db.Column(db.String(20), unique=False, nullable=False)
-    description=db.Column(db.String(200), unique=False, nullable=True)
-    professor=db.Column(db.String(20), unique=False, nullable=False)
-    
+    name=db.Column(db.String(60), unique=False, nullable=False)
+    description=db.Column(db.String(250), unique=False, nullable=True)
+    professor=db.Column(db.String(30), unique=False, nullable=False)
+    date_created=db.Column(db.DateTime, default=datetime.utcnow)
+
     def __repr__(self):
-        return f'{self.id} : {self.name} : {self.date_created.strftime("%d/%m/%Y, %H:%M:%S")}'
+        return f'{self.name} : {self.professor} : {self.date_created.strftime("%d/%m/%Y, %H:%M:%S")}'

@@ -3,8 +3,8 @@ This is a flask program to create a course registration website for a hypothetic
 '''
 #imports
 from vmuniversity_flask import app, db, bcrypt
-from vmuniversity_flask.forms import RegistrationForm, LoginForm
-from vmuniversity_flask.models import User
+from vmuniversity_flask.forms import RegistrationForm, LoginForm, AdminForm, CreateCourseForm
+from vmuniversity_flask.models import User, Course
 from flask import redirect, render_template, url_for, flash
 import re
 
@@ -36,11 +36,18 @@ def login():
             flash(f'Login unsuccessful for {form.email.data}', category='danger')
     return render_template('login.html', title='Login', form=form)
 
-@app.route('/administration')
+@app.route('/administration', methods =['POST', 'GET'])
 def administration():
     '''This creates the administration webpage'''
+    form=AdminForm()
+    if form.validate_on_submit():
+        if form.email.data=='admin.access@vmu.edu' and form.password.data=='adminS3tup@cc3ss!':
+            flash(f'Successfully logged in as Administrator for {form.email.data}', category='success')
+            return redirect(url_for('admincourses'))
+        else:
+            flash(f'Login unsuccessful for {form.email.data}', category='danger')
     #returns the render
-    return render_template('administration.html', title='Administration Page')
+    return render_template('administration.html', title='Administration Page', form=form)
 
 @app.route('/welcome/')
 def welcome():
@@ -61,10 +68,20 @@ data = (
 @app.route('/courses/')
 def courses():
     '''This creates the courses webpage'''
-    
-    
     #returns the render
     return render_template('courses.html', title='Course Page', headings = headings, data = data)
+
+@app.route('/admincourses/', methods =['POST', 'GET'])
+def admincourses():
+    '''This creates the courses webpage'''
+    form=CreateCourseForm()
+    if form.validate_on_submit():
+        course=Course(name=form.name.data, description=form.description.data, professor=form.professor.data)
+        db.session.add(course)
+        db.session.commit()
+        flash(f'Course created successfully for {form.name.data}', category='success')
+    #returns the render
+    return render_template('admincourses.html', title='Admin Access Page', form=form)
 
 def password_okay(password):
     '''This method uses regex to check the password to meet criteria'''
