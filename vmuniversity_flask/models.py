@@ -1,7 +1,12 @@
-from vmuniversity_flask import db
+from vmuniversity_flask import db, login_manager
 from datetime import datetime
+from flask_login import UserMixin
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
 #this creates the user database object
-class User(db.Model):
+class User(db.Model, UserMixin):
     '''Users database class'''
     id=db.Column(db.Integer, primary_key=True)
     username=db.Column(db.String(20), unique=True, nullable=False)

@@ -46,16 +46,24 @@
           <li class="nav-item">
             <a class="nav-link" href="{{url_for('courses')}}">Courses</a>
           </li>
+          {%if not current_user.is_authenticated%}
           <li class="nav-item">
             <a class="nav-link" href="{{url_for('register')}}">Register</a>
           </li>
+          {%endif%}
         </ul>
       </div>
     </div>
     <ul class="nav justify-content-end">
+        {%if current_user.is_authenticated%}
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('logout')}}">Log Out</a>
+        </li>
+        {%else%}
         <li class="nav-item">
           <a class="nav-link" href="{{url_for('login')}}">Student Portal</a>
         </li>
+        {%endif%}
         <li class="nav-item">
           <a class="nav-link" href="{{url_for('administration')}}">Admin</a>
         </li>
