@@ -24,7 +24,7 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Registration Page', form=form)
 
-@app.route('/login', methods =['POST', 'GET'])
+@app.route('/login/', methods =['POST', 'GET'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('studentaccount'))
@@ -40,12 +40,12 @@ def login():
             flash(f'Login unsuccessful for {form.email.data}', category='danger')
     return render_template('login.html', title='Login', form=form)
 
-@app.route('/logout')
+@app.route('/logout/')
 def logout():
     logout_user()
     return redirect(url_for('login'))
 
-@app.route('/administration', methods =['POST', 'GET'])
+@app.route('/administration/', methods =['POST', 'GET'])
 def administration():
     '''This creates the administration webpage'''
     form=AdminForm()
