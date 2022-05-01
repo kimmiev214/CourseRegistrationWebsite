@@ -58,7 +58,7 @@ def administration():
     #returns the render
     return render_template('administration.html', title='Administration Page', form=form)
 
-@app.route('/welcome/')
+@app.route('/')
 def welcome():
     '''This creates the welcome webpage'''
     #returns the render
