@@ -4,27 +4,22 @@
 <h2>{% block title %} Bachelor's Degree in Computer Science Course Requirements {% endblock %}</h2>
 <div>
   <table>
-  <tr>
-  {%for header in headings%}
-    <th>{{ header }}</th>
-	{% endfor%}
-  </tr>
-  {%for row in data%}
-  <tr>
-	{%for cell in row%}
-  <td>{{cell}}</td>
-
-	{% endfor%}
-	<td>
-	<form method="post" action="/">
-        <input type="submit" value="Enroll" name="Enroll"/>
-        <input type="submit" value="Disenroll" name="Disenroll" />
-    </form>
-	</td>
-  </tr>
-  {% endfor%}
-
-
-</table>
-</div>
+    <table id="Courses" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for course in courses %}
+          <tr>
+            <td>{{ course.name }}</td>
+            <td>{{ course.description}}</td>
+            <td>{{ course.professor}}</td>
+            <td><input type="submit" value="Enroll" name="Enroll"/></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 {% endblock %}

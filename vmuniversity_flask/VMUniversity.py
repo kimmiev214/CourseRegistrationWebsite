@@ -4,7 +4,7 @@ This is a flask program to create a course registration website for a hypothetic
 #imports
 from vmuniversity_flask import app, db, bcrypt
 from vmuniversity_flask.forms import RegistrationForm, LoginForm, AdminForm, CreateCourseForm
-from vmuniversity_flask.models import User, Course
+from vmuniversity_flask.models import User, Course, user_course
 from flask import redirect, render_template, url_for, flash
 import re
 from flask_login import  login_user, logout_user, current_user
@@ -63,22 +63,13 @@ def welcome():
     '''This creates the welcome webpage'''
     #returns the render
     return render_template('welcome.html', title='Welcome Page')
-headings = ('Course Number','Title','Options')
-data = (
-    ('CSVMU150','Introduction to Computer Science'),
-    ('CSVMU160','Introduction to Python'),
-    ('CSVMU200','Intermediate Programming'),
-    ('CSVMU310','Introduction to Data Structures'),
-    ('CSVMU332','History of Technology Innovation'),
-    ('CSVMU415','Computer Graphics'),
-    ('CSVMU425','Compiler Theory and Design'),
-    ('CSVMU490','Projects and Trends in Computer Science')
-    )
+
 @app.route('/courses/')
 def courses():
     '''This creates the courses webpage'''
+    courses = Course.query
     #returns the render
-    return render_template('courses.html', title='Course Page', headings = headings, data = data)
+    return render_template('courses.html', title='Course Page', courses=courses)
 
 @app.route('/studentaccount/')
 def studentaccount():
@@ -90,13 +81,16 @@ def studentaccount():
 def admincourses():
     '''This creates the admin webpage'''
     form=CreateCourseForm()
+    
+    users = User.query
+    courses = Course.query
     if form.validate_on_submit():
         course=Course(name=form.name.data, description=form.description.data, professor=form.professor.data)
         db.session.add(course)
         db.session.commit()
         flash(f'Course created successfully for {form.name.data}', category='success')
     #returns the render
-    return render_template('admincourses.html', title='Admin Access Page', form=form)
+    return render_template('admincourses.html', title='Admin Access Page', form=form, users=users, courses=courses)
 
 def password_okay(password):
     '''This method uses regex to check the password to meet criteria'''
@@ -106,3 +100,13 @@ def password_okay(password):
     lower = re.search(r"[a-z]", password) is None
     symbol = re.search(r"[ !#$%&'()*+,-./[\\\]^_`{|}~"+r'"]', password) is None
     return not(length or num or capital or lower or symbol)
+@app.route('/coursedelete/<courseid>')
+def course_delete(courseid):
+    course = Course.query.filter_by(id=courseid).first()
+    print(course)
+    if course:
+        msg_text = 'Course %s successfully removed' % str(course)
+        db.session.delete(course)
+        db.session.commit()
+        flash(msg_text)
+    return redirect(url_for('admincourses'))
