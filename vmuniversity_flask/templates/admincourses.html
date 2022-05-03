@@ -78,6 +78,9 @@
         <td>{{ course.name }}</td>
         <td>{{ course.description}}</td>
         <td>{{ course.professor}}</td>
+        <td><a href="{{ url_for('course_delete', courseid=course.id) }}"
+          onclick= "confirm('Do you want to permanently delete course {{ course }}?');" title="Delete Course">
+          <i class="material-icons" style="font-size:16px">delete</i></a></td>
       </tr>
     {% endfor %}
   </tbody>

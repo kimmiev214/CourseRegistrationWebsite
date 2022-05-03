@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     email=db.Column(db.String(120), unique=True, nullable=False)
     password=db.Column(db.String(60), nullable=False)
     date_created=db.Column(db.DateTime, default=datetime.utcnow)
-    enrolledCourses = db.relationship('Course', second = user_course, backref='enrolledStudents')
+    enrolledCourses = db.relationship('Course', secondary = user_course, backref='enrolledStudents')
 
     def __repr__(self):
         return f'{self.username} : {self.email} : {self.date_created.strftime("%d/%m/%Y, %H:%M:%S")}'

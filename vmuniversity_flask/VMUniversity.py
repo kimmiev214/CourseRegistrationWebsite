@@ -100,3 +100,13 @@ def password_okay(password):
     lower = re.search(r"[a-z]", password) is None
     symbol = re.search(r"[ !#$%&'()*+,-./[\\\]^_`{|}~"+r'"]', password) is None
     return not(length or num or capital or lower or symbol)
+@app.route('/coursedelete/<courseid>')
+def course_delete(courseid):
+    course = Course.query.filter_by(id=courseid).first()
+    print(course)
+    if course:
+        msg_text = 'Course %s successfully removed' % str(course)
+        db.session.delete(course)
+        db.session.commit()
+        flash(msg_text)
+    return redirect(url_for('admincourses'))
