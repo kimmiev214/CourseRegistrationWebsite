@@ -103,10 +103,28 @@ def password_okay(password):
 @app.route('/coursedelete/<courseid>')
 def course_delete(courseid):
     course = Course.query.filter_by(id=courseid).first()
-    print(course)
     if course:
         msg_text = 'Course %s successfully removed' % str(course)
         db.session.delete(course)
         db.session.commit()
         flash(msg_text)
     return redirect(url_for('admincourses'))
+@app.route('/courseenroll/<courseid><studentID>')
+def course_enroll(courseid, studentID):
+    course = Course.query.filter_by(id=courseid).first()
+    student = User.query.filter_by(id=studentID).first()
+    msg_text = 'Course %s successfully added' % str(course)
+    student.enrolledCourses.append(course)
+    db.session.commit()
+    flash(msg_text)
+    return redirect(url_for('courses'))
+
+@app.route('/coursedisenroll/<courseid><studentID>')
+def course_disenroll(courseid, studentID):
+    course = Course.query.filter_by(id=courseid).first()
+    student = User.query.filter_by(id=studentID).first()
+    msg_text = 'Course %s successfully removed' % str(course)
+    student.enrolledCourses.remove(course)
+    db.session.commit()
+    flash(msg_text)
+    return redirect(url_for('courses'))
