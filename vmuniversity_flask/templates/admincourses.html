@@ -95,10 +95,18 @@
     </tr>
   </thead>
   <tbody>
-    {% for usercourse in usercourses %}
+    {% for user in users %}
       <tr>
-        <td>{{ user.name }}</td>
-        <td>{{ course.name}}</td>
+        <td>{{ user.username }}</td>
+        {% for course in user.enrolledCourses %}
+        <tr>
+          <td></td>
+          <td>{{ course.name }}</td>
+        <td>{{ course.description}}</td>
+        <td>{{ course.professor}}</td>
+        </tr>
+          
+        {% endfor %}
       </tr>
     {% endfor %}
   </tbody>
