@@ -6,10 +6,6 @@
   <table>
     <table id="Courses" class="table table-striped">
       <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-        </tr>
       </thead>
       <tbody>
         {% for course in courses %}
@@ -17,9 +13,39 @@
             <td>{{ course.name }}</td>
             <td>{{ course.description}}</td>
             <td>{{ course.professor}}</td>
-            <td><input type="submit" value="Enroll" name="Enroll"/></td>
+            {%if current_user.is_authenticated%}
+            <td><a href="{{ url_for('course_enroll', courseid=course.id, studentID=current_user.id) }}"
+              onclick= "confirm('Do you want to enroll in course {{ course }}?');" title="Enroll in Course">
+              <i class="material-icons" style="font-size:16px">enroll</i></a></td>
+            {%endif%}
           </tr>
         {% endfor %}
+
+        
+
       </tbody>
     </table>
+    {%if current_user.is_authenticated%}
+    <table>
+      <table id="User Courses" class="table table-striped">
+    <thead>
+    </thead>
+    <tbody>
+        <h2>Your Courses</h2>
+          {% for course in current_user.enrolledCourses %}
+          <tr>
+            <td>{{ course.name }}</td>
+            <td>{{ course.description}}</td>
+            <td>{{ course.professor}}</td>
+            <td><a href="{{ url_for('course_disenroll', courseid=course.id, studentID=current_user.id) }}"
+              onclick= "confirm('Do you want to disenroll from course {{ course }}?');" title="Disenroll from Course">
+              <i class="material-icons" style="font-size:16px">disenroll</i></a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        </table>
+        {%endif%}
+
+
+
 {% endblock %}
