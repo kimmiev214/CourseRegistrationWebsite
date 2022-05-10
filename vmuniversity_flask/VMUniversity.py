@@ -75,13 +75,13 @@ def courses():
 def studentaccount():
     '''This creates the student courses webpage'''
     #returns the render
-    return render_template('studentaccount.html', title='My Account', headings = headings, data = data)
+    return render_template('studentaccount.html', title='My Account')
 
 @app.route('/admincourses/', methods =['POST', 'GET'])
 def admincourses():
     '''This creates the admin webpage'''
     form=CreateCourseForm()
-    
+
     users = User.query
     courses = Course.query
     if form.validate_on_submit():
